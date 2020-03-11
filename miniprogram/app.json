@@ -1,6 +1,8 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/analyze/analyze",
+    "pages/me/me"
   ],
   "window": {
     "navigationBarTitleText": "TimeHub"
@@ -9,5 +11,9 @@
     "request": 10000,
     "downloadFile": 10000
   },
-  "debug": true
+  "debug": true,
+  "usingComponents": {
+    "van-tabbar": "@vant/weapp/tabbar",
+    "van-tabbar-item": "@vant/weapp/tabbar-item"
+  }
 }
