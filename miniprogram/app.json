@@ -15,5 +15,28 @@
   "usingComponents": {
     "van-tabbar": "@vant/weapp/tabbar",
     "van-tabbar-item": "@vant/weapp/tabbar-item"
+  },
+  "tabBar": {
+    "selectedColor": "#1296db",
+    "list": [
+      {
+        "pagePath": "pages/analyze/analyze",
+        "text": "分析",
+        "iconPath": "images/icon/analyze.png",
+        "selectedIconPath": "images/icon/analyze_action.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "记录",
+        "iconPath": "images/icon/index.png",
+        "selectedIconPath": "images/icon/index_action.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "images/icon/me.png",
+        "selectedIconPath": "images/icon/me_action.png"
+      }
+    ]
   }
 }
