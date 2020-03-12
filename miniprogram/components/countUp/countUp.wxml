@@ -1,0 +1,4 @@
+<!--components/countUp/countUp.wxml-->
+<text>{{formattedTime}}</text>
+<button bindtap="pauseTick">暂停</button>
+<button bindtap="startTick">开始</button>

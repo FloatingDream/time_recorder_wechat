@@ -1,1 +1,4 @@
 /* miniprogram/pages/index/index.wxss */
+.swipeButton {
+  padding: 0 4px;
+}
