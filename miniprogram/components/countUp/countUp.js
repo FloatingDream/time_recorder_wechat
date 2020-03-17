@@ -1,26 +1,22 @@
 // components/countUp/countUp.js
 import { parseFormat,parseTimeData } from '../../utils/time.js'
+
 function simpleTick(fn) {
   return setTimeout(fn, 30)
 }
+
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    useSlot: Boolean,
-    millisecond: Boolean,
-    time: {
+    startTime: {       //任务开始的时间
       type: Number,
-      observer: 'reset'
+      value: null
     },
-    format: {
+    format: {     //任务输出时间格式
       type: String,
       value: 'HH:mm:ss'
-    },
-    autoStart: {
-      type: Boolean,
-      value: true
     }
   },
 
@@ -28,13 +24,14 @@ Component({
    * 组件的初始数据
    */
   data: {
-    timeData: 0,
     formattedTime: '0',
-    startTime: 0,
-    timeLong: 0,
+    timeBucket: 0
   },
-
-  detached: function() {
+  
+  /**
+   * 组件生命周期函数-在组件实例被从页面节点树移除时执行
+   */
+  detached: function() {   //清除定时器
     clearTimeout(this.tid)
     this.tid = null
   },
@@ -45,64 +42,61 @@ Component({
   methods: {
     //开始
     start() {
-      // if (this.counting) {
-      //   this.data.startTime = Date.now()
-      //   this.tick()
-      //   return
-      // }
-      // this.counting = true
       this.data.startTime = Date.now()
       this.tick()
     },
 
-    // 暂停
+    //继续
+    goto() {
+      this.tick()
+    },
+
+    // 结束
     pause() {
-      // this.counting = true
       clearTimeout(this.tid)
       this.tid = null
     },
 
-    // 重置
-    reset() {
-      this.pause()
-      this.continueTime = 0
-      if (this.data.autoStart) {
-        this.start();
-      }
-    },
-
+    // 计时
     tick() {
       this.microTick()
     },
 
+    // 毫秒计时
     microTick() {
       this.tid = simpleTick(() =>{
-        const timeLong = this.getLongTime()
-        this.setTimeLong(timeLong)
+        let timeBucket = this.getTimeBucket()
+        this.setTimeBucket(timeBucket)
         this.microTick()
       })
     },
 
-    getLongTime() {
+    // 获取计时
+    getTimeBucket() {
       return Math.max(Date.now()- this.data.startTime,0)
     },
-
-    setTimeLong(time) {
-      this.timeLong = time
+    // 设置计时
+    setTimeBucket(time) {
+      this.timeBucket = time
       this.setData({
         formattedTime: parseFormat(this.data.format, parseTimeData(time))
       })
     },
+
     startTick: function (event) {
       this.start()
     },
+
     pauseTick: function (event) {
       this.pause()
     }
   },
+
   pageLifetimes: {
     show:function(){
-      this.start()
+      if(this.data.startTime !== null){
+        this.goto()
+      }
     }
   }
 })
