@@ -1,4 +1,18 @@
 <!--components/countUp/countUp.wxml-->
-<text>{{formattedTime}}</text>
-<button bindtap="pauseTick">暂停</button>
-<button bindtap="startTick">开始</button>
+<text class="count-formatted">{{formattedTime}}</text>
+<form class="count-form">
+  <input class="count-input" auto-focus type="text" placeholder="活动名称" />
+  <picker bindchange="bindPickerChange" class="count-type-picker" mode="selector" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      当前选择：{{array[index]}}
+    </view>
+  </picker>
+  <view class="tag">
+    <van-tag color="#f2826a">cpa</van-tag>
+    <van-tag color="#f2826a" plain>经济法</van-tag>
+    <van-tag color="#7232dd">经济</van-tag>
+    <van-tag color="#7232dd" plain>金融</van-tag>
+  </view>
+</form>
+<button class="count-but" bindtap="pauseTick">暂停</button>
+<button class="count-but" bindtap="startTick">开始</button>

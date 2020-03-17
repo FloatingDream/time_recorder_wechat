@@ -1,1 +1,11 @@
 /* components/countUp/countUp.wxss */
+text {
+  font-size: 60rpx;
+  padding: 12rpx;
+}
+
+.count-input {
+  border: 1rpx solid;
+  display: block;
+  padding: 3rpx;
+}

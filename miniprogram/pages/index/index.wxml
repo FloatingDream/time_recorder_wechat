@@ -1,15 +1,6 @@
 <!--miniprogram/pages/index/index.wxml-->
 <count-up></count-up>
 
-<van-panel title="{{todo.name}}" desc="" status="状态" use-footer-slot>
-  <view>开始时间：{{todo.startTime}}</view>
-  <view>持续时间：{{}}</view>
-  <view slot="footer">
-    <van-button size="small">按钮</van-button>
-    <van-button size="small" type="danger">按钮</van-button>
-  </view>
-</van-panel>
-
 <view wx:for="{{todayLog}}" wx:key="unique">
   <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}">
     <view slot="left">

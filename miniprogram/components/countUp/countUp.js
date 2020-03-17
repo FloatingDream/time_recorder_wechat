@@ -25,7 +25,9 @@ Component({
    */
   data: {
     formattedTime: '0',
-    timeBucket: 0
+    timeBucket: 0,
+    array: ['学习', '工作', '锻炼', '娱乐'],
+    index: 0
   },
   
   /**
@@ -89,9 +91,21 @@ Component({
 
     pauseTick: function (event) {
       this.pause()
+    },
+
+    // 活动类型选择
+    bindPickerChange: function (e) {
+      console.log('picker发送选择改变，携带值为', e.detail.value)
+      this.setData({
+        index: e.detail.value
+      })
     }
   },
 
+
+
+
+// 页面生命周期
   pageLifetimes: {
     show:function(){
       if(this.data.startTime !== null){

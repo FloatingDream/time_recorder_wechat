@@ -1,0 +1,10 @@
+<!--components/picker/picker.wxml-->
+<view class="tools">
+  <view class="left">
+  取消
+  </view>
+  <view class="right">
+  确认
+  </view>
+</view>
+
